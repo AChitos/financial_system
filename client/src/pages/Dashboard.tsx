@@ -9,7 +9,8 @@ import {
   Filter,
   Receipt,
   ArrowUpDown,
-  Target
+  Target,
+  BarChart3
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -270,6 +271,191 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      {/* Widget Manager Modal */}
+      {showWidgetManager && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold text-gray-900">Manage Dashboard Widgets</h3>
+              <button
+                onClick={() => setShowWidgetManager(false)}
+                className="text-gray-400 hover:text-gray-600 text-2xl"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="font-medium text-gray-900 mb-2">Available Widgets</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <DollarSign className="w-4 h-4 text-blue-600" />
+                      </div>
+                      <span className="text-sm font-medium">Financial Overview</span>
+                    </div>
+                    <input type="checkbox" defaultChecked className="w-4 h-4 text-purple-600" />
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <TrendingUp className="w-4 h-4 text-green-600" />
+                      </div>
+                      <span className="text-sm font-medium">Recent Transactions</span>
+                    </div>
+                    <input type="checkbox" defaultChecked className="w-4 h-4 text-purple-600" />
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <Target className="w-4 h-4 text-purple-600" />
+                      </div>
+                      <span className="text-sm font-medium">Quick Actions</span>
+                    </div>
+                    <input type="checkbox" defaultChecked className="w-4 h-4 text-purple-600" />
+                  </div>
+
+                  <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <BarChart3 className="w-4 h-4 text-orange-600" />
+                      </div>
+                      <span className="text-sm font-medium">Spending Chart</span>
+                    </div>
+                    <input type="checkbox" className="w-4 h-4 text-purple-600" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h4 className="font-medium text-gray-900 mb-2">Widget Layout</h4>
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Columns</label>
+                    <select className="input-field">
+                      <option>Auto</option>
+                      <option>1 Column</option>
+                      <option>2 Columns</option>
+                      <option>3 Columns</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Widget Size</label>
+                    <select className="input-field">
+                      <option>Medium</option>
+                      <option>Small</option>
+                      <option>Large</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex space-x-3 mt-6">
+              <button
+                onClick={() => setShowWidgetManager(false)}
+                className="flex-1 btn-secondary"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => setShowWidgetManager(false)}
+                className="flex-1 btn-primary"
+              >
+                Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Add Widget Modal */}
+      {showAddWidget && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-full max-w-md">
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-xl font-semibold text-gray-900">Add New Widget</h3>
+              <button
+                onClick={() => setShowAddWidget(false)}
+                className="text-gray-400 hover:text-gray-600 text-2xl"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-3">Choose Widget Type</label>
+                <div className="space-y-3">
+                  <div className="flex items-center p-3 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="widgetType" value="spending-chart" className="w-4 h-4 text-purple-600 mr-3" />
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                      <BarChart3 className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900">Spending Chart</div>
+                      <div className="text-sm text-gray-500">Visualize your spending patterns</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center p-3 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="widgetType" value="budget-tracker" className="w-4 h-4 text-purple-600 mr-3" />
+                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                      <Target className="w-5 h-5 text-green-600" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900">Budget Tracker</div>
+                      <div className="text-sm text-gray-500">Monitor budget progress</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center p-3 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="widgetType" value="goal-progress" className="w-4 h-4 text-purple-600 mr-3" />
+                    <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                      <PiggyBank className="w-5 h-5 text-orange-600" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900">Goal Progress</div>
+                      <div className="text-sm text-gray-500">Track savings goals</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center p-3 border border-gray-200 rounded-lg hover:border-purple-300 hover:bg-purple-50 cursor-pointer transition-all duration-200">
+                    <input type="radio" name="widgetType" value="cash-flow" className="w-4 h-4 text-purple-600 mr-3" />
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                      <TrendingUp className="w-5 h-5 text-purple-600" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-gray-900">Cash Flow</div>
+                      <div className="text-sm text-gray-500">Income vs expenses over time</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex space-x-3 mt-6">
+              <button
+                onClick={() => setShowAddWidget(false)}
+                className="flex-1 btn-secondary"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => setShowAddWidget(false)}
+                className="flex-1 btn-primary"
+              >
+                Add Widget
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
