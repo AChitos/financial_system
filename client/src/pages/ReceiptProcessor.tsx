@@ -1,8 +1,8 @@
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, FileText, Scan, Check, X, Loader } from 'lucide-react';
+import { Upload, FileText, Scan, Check, Loader } from 'lucide-react';
 import Tesseract from 'tesseract.js';
-import { ExtractedReceiptData, ReceiptItem } from '@/types';
+import { ExtractedReceiptData } from '@/types';
 
 const ReceiptProcessor = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -139,16 +139,9 @@ const ReceiptProcessor = () => {
     return 'Other';
   };
 
-  const isBusinessExpense = (merchantName: string, category: string): boolean => {
+  const isBusinessExpense = (_merchantName: string, category: string): boolean => {
     const businessCategories = ['Office Supplies', 'Travel', 'Professional Services'];
     return businessCategories.includes(category);
-  };
-
-  const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    }).format(amount);
   };
 
   const saveTransaction = () => {

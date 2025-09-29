@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 const Header = () => {
   const { user } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
-  const [notifications, setNotifications] = useState(3); // Mock notification count
+  const [notifications] = useState(3); // Mock notification count
 
   const currentDate = new Date();
   const greeting = () => {

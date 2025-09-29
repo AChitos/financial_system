@@ -22,9 +22,9 @@ import {
   Legend,
   ArcElement,
 } from 'chart.js';
-import { dashboardApi, transactionsApi } from '@/services/api';
+import { dashboardApi } from '@/services/api';
 import { DashboardStats, Transaction, MonthlyData, CategoryExpense } from '@/types';
-import { format, startOfMonth, endOfMonth } from 'date-fns';
+import { format } from 'date-fns';
 
 ChartJS.register(
   CategoryScale,
