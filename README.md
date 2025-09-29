@@ -76,6 +76,23 @@ npm run dev
 - ✅ File upload for receipts
 
 ### Production Deployment
+GitHub Pages builds a static site from this repo. We prevent Jekyll from processing the repo with a `.nojekyll` file and publish the built SPA from `client/dist` using the provided workflow.
+
+To deploy manually:
+
+```bash
+# Build client
+cd client
+npm run build
+
+# Commit and push (the workflow will publish `client/dist`)
+cd ..
+git add -A
+git commit -m "build: client for pages"
+git push origin main
+```
+
+Ensure the repository Pages settings are set to "GitHub Actions" as the source.
 
 ```bash
 npm run build
