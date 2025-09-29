@@ -82,23 +82,23 @@ const Goals = () => {
 
   if (goals.length === 0) {
     return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Savings Goals</h1>
-          <p className="text-gray-600 mt-1">Set and track your financial objectives</p>
+      <div className="space-y-6 animate-fade-in">
+        <div className="animate-slide-up">
+          <h1 className="text-3xl font-bold text-gradient">Savings Goals</h1>
+          <p className="text-gray-600 mt-2">Set and track your financial objectives</p>
         </div>
-        
-        <div className="bg-white rounded-xl p-8 shadow-card text-center">
-          <Target className="w-16 h-16 text-purple-600 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Create Your First Savings Goal</h2>
-          <p className="text-gray-600 mb-6">
+
+        <div className="card-hover text-center animate-slide-up" style={{animationDelay: '0.2s'}}>
+          <Target className="w-20 h-20 text-purple-600 mx-auto mb-6 animate-pulse-soft" />
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">Create Your First Savings Goal</h2>
+          <p className="text-gray-600 mb-8 max-w-md mx-auto">
             Set savings goals for major purchases, emergency funds, and long-term objectives.
           </p>
-          <button 
+          <button
             onClick={() => setShowCreateModal(true)}
-            className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 inline-flex items-center space-x-2"
+            className="btn-primary text-lg px-8 py-4 inline-flex items-center space-x-3"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="w-6 h-6" />
             <span>Create New Goal</span>
           </button>
         </div>
