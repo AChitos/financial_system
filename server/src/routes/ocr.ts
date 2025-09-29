@@ -7,15 +7,8 @@ import { protect } from '../middleware/auth';
 const router = express.Router();
 
 // Configure multer for file uploads
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, dataPath('uploads/receipts'));
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
+// Use memoryStorage to be compatible with serverless environments like Vercel (read-only filesystem)
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,
@@ -56,7 +49,7 @@ router.post('/process', protect, upload.single('receipt'), (req: any, res) => {
     const mockExtractedData = {
       id: Date.now().toString(),
       userId: req.user.id,
-      fileName: req.file.filename,
+      fileName: req.file.originalname,
       originalText: 'Mock OCR text - implement real OCR processing here',
       extractedData: {
         merchantName: 'Sample Store',

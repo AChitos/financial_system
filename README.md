@@ -166,3 +166,26 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Support
 
 For support, email support@finset.com or create an issue in this repository.
+
+## Vercel Deployment
+
+This repository is configured for deployment on Vercel with a serverless API and static frontend.
+
+- Serverless API entry: `server/api/[...route].ts` wraps the Express app
+- Routing and builds configured in `vercel.json`
+
+Steps to deploy:
+
+1. In Vercel, add Environment Variables:
+   - `JWT_SECRET`: any secure random string
+   - `FRONTEND_URL`: your production URL (e.g., https://your-project.vercel.app)
+   - `VITE_API_URL`: https://your-project.vercel.app/api
+2. Connect the GitHub repo to Vercel and deploy.
+3. Vercel runs `npm run vercel-build` at the repo root to build server and client.
+4. Verify:
+   - `GET https://<your-domain>/api/health` → 200 OK
+   - The SPA loads at `https://<your-domain>/`
+
+Notes:
+- Uploads are handled in-memory for serverless compatibility; for persistence use Vercel Blob.
+- The current data layer uses JSON files for demo purposes. For production, use Vercel Postgres or KV.

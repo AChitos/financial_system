@@ -108,6 +108,18 @@ Building a comprehensive financial management web application with the following
 
 **Last Updated**: 2025-09-29 - PROJECT COMPLETED! 🚀
 
+## Vercel Preparation (New)
+- Exported Express app for serverless environments (`server/src/app.ts`)
+- Added serverless catch-all function (`server/api/[...route].ts`) using serverless-http
+- Switched OCR uploads to memory storage (serverless-friendly)
+- Added Vercel routing config (`/vercel.json`) and function config (`/server/vercel.json`)
+- Added root `vercel-build` script to build both server and client
+
+### Next Steps for Production on Vercel
+- Replace JSON file storage with Vercel Postgres or KV (users, transactions, budgets, goals)
+- Integrate Vercel Blob for receipt persistence
+- Set env vars on Vercel: `JWT_SECRET`, `FRONTEND_URL`, `VITE_API_URL`
+
 ## Backend API Endpoints Created
 - POST /api/auth/register - User registration
 - POST /api/auth/login - User login

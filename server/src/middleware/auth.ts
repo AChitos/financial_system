@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { readFileSync } from 'fs';
 import path from 'path';
+import { dataPath } from '../utils/paths';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
@@ -21,7 +22,7 @@ export const protect = async (req: AuthRequest, res: Response, next: NextFunctio
       const decoded = jwt.verify(token, JWT_SECRET) as any;
 
       // Get user from token
-      const usersPath = path.join(__dirname, '../../data/users.json');
+  const usersPath = dataPath('users.json');
       let users = [];
       
       try {
