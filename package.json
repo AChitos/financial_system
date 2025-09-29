@@ -1,0 +1,26 @@
+{
+  "name": "finset-financial-system",
+  "version": "1.0.0",
+  "description": "Comprehensive financial management system for business operations",
+  "main": "dist/server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "deploy": "npm run build && gh-pages -d client/dist",
+    "test": "npm run test:server && npm run test:client",
+    "test:server": "cd server && npm test",
+    "test:client": "cd client && npm test"
+  },
+  "keywords": ["finance", "business", "accounting", "dashboard", "analytics"],
+  "author": "Andrea Schitos",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "gh-pages": "^6.0.0"
+  }
+}
