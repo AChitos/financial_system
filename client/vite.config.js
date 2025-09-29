@@ -13,7 +13,7 @@ export default defineConfig({
       '@': path.resolve(rootDir, './src'),
     },
   },
-  base: isVercel ? '/' : '/financial_system/',
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

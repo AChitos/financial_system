@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import './index.css'
 
-const basename = (import.meta as any)?.env?.BASE_URL?.replace(/\/$/, '') || '';
+const basename = '';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
