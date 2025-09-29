@@ -2,11 +2,12 @@ import express from 'express';
 import { v4 as uuidv4 } from 'uuid';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import { dataPath } from '../utils/paths';
 import { protect } from '../middleware/auth';
 
 const router = express.Router();
 
-const getTransactionsFilePath = () => path.join(__dirname, '../../data/transactions.json');
+const getTransactionsFilePath = () => dataPath('transactions.json');
 
 const readTransactions = () => {
   try {

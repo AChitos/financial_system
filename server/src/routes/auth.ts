@@ -4,12 +4,13 @@ import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
 import { readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import { dataPath } from '../utils/paths';
 import { protect } from '../middleware/auth';
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
-const getUsersFilePath = () => path.join(__dirname, '../../data/users.json');
+const getUsersFilePath = () => dataPath('users.json');
 
 const readUsers = () => {
   try {

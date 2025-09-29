@@ -1,13 +1,14 @@
 import express from 'express';
 import { readFileSync } from 'fs';
 import path from 'path';
+import { dataPath } from '../utils/paths';
 import { protect } from '../middleware/auth';
 
 const router = express.Router();
 
-const getTransactionsFilePath = () => path.join(__dirname, '../../data/transactions.json');
-const getBudgetsFilePath = () => path.join(__dirname, '../../data/budgets.json');
-const getGoalsFilePath = () => path.join(__dirname, '../../data/goals.json');
+const getTransactionsFilePath = () => dataPath('transactions.json');
+const getBudgetsFilePath = () => dataPath('budgets.json');
+const getGoalsFilePath = () => dataPath('goals.json');
 
 const readTransactions = () => {
   try {

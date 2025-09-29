@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import path from 'path';
+import fs from 'fs';
+import { DATA_DIR } from './utils/paths';
 
 import authRoutes from './routes/auth';
 import dashboardRoutes from './routes/dashboard';
@@ -29,8 +31,11 @@ app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Static files for uploads
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+// Ensure data/uploads directories exist and serve uploads
+const uploadsRoot = path.join(DATA_DIR, 'uploads');
+if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+if (!fs.existsSync(uploadsRoot)) fs.mkdirSync(uploadsRoot, { recursive: true });
+app.use('/uploads', express.static(uploadsRoot));
 
 // Health check
 app.get('/health', (req, res) => {
