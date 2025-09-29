@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "id": "f43b945b-de64-4424-a216-f5782706fd28",
+    "userId": "demo-user",
+    "name": "j",
+    "totalAmount": 9000,
+    "period": "monthly",
+    "startDate": "2025-09-29T00:00:00.000Z",
+    "endDate": "2025-09-14T00:00:00.000Z",
+    "categories": [
+      {
+        "categoryId": "",
+        "categoryName": "",
+        "allocatedAmount": 9000,
+        "spentAmount": 0,
+        "remainingAmount": 9000,
+        "percentage": 100
+      }
+    ],
+    "isActive": true,
+    "createdAt": "2025-09-29T22:46:13.667Z",
+    "updatedAt": "2025-09-29T22:46:13.667Z"
+  }
+]

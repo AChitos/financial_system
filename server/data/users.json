@@ -1,13 +1,13 @@
 [
   {
     "id": "demo-user",
-    "name": "Adaline Lively",
+    "name": "Demo User",
     "email": "demo@finset.com",
     "password": "$2a$10$Kd95qBFGR8OnrLateOZE6.1WigSAnFuknTPudMBhU33zCIeQAkQsK",
-    "businessName": "FinSet Demo Business",
+    "businessName": "",
     "avatar": "",
     "createdAt": "2025-09-01T00:00:00.000Z",
-    "updatedAt": "2025-09-29T00:00:00.000Z"
+    "updatedAt": "2025-09-29T22:47:05.636Z"
   },
   {
     "id": "d322e393-236d-4c14-980a-96014e0869d4",
