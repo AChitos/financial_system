@@ -312,7 +312,12 @@ const Dashboard = () => {
                       </div>
                       <span className="text-sm font-medium">Financial Overview</span>
                     </div>
-                    <input type="checkbox" defaultChecked className="w-4 h-4 text-purple-600" />
+                    <input 
+                      type="checkbox" 
+                      checked={visibleWidgets.financialOverview}
+                      onChange={(e) => setVisibleWidgets(prev => ({ ...prev, financialOverview: e.target.checked }))}
+                      className="w-4 h-4 text-purple-600" 
+                    />
                   </div>
 
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
@@ -322,7 +327,12 @@ const Dashboard = () => {
                       </div>
                       <span className="text-sm font-medium">Recent Transactions</span>
                     </div>
-                    <input type="checkbox" defaultChecked className="w-4 h-4 text-purple-600" />
+                    <input 
+                      type="checkbox" 
+                      checked={visibleWidgets.recentTransactions}
+                      onChange={(e) => setVisibleWidgets(prev => ({ ...prev, recentTransactions: e.target.checked }))}
+                      className="w-4 h-4 text-purple-600" 
+                    />
                   </div>
 
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
@@ -332,7 +342,12 @@ const Dashboard = () => {
                       </div>
                       <span className="text-sm font-medium">Quick Actions</span>
                     </div>
-                    <input type="checkbox" defaultChecked className="w-4 h-4 text-purple-600" />
+                    <input 
+                      type="checkbox" 
+                      checked={visibleWidgets.quickActions}
+                      onChange={(e) => setVisibleWidgets(prev => ({ ...prev, quickActions: e.target.checked }))}
+                      className="w-4 h-4 text-purple-600" 
+                    />
                   </div>
 
                   <div className="flex items-center justify-between p-3 bg-white rounded-lg border">
