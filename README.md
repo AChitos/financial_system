@@ -35,34 +35,47 @@ A comprehensive financial management web application designed for business opera
 - **Charts**: Chart.js/Recharts
 - **Deployment**: GitHub Pages + GitHub Actions
 
-## Getting Started
+## Quick Start (Demo)
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- Git
+### Demo Account
+- **Email**: demo@finset.com
+- **Password**: password
 
-### Installation
+### Development Setup
 
-1. Clone the repository:
+1. **Clone and Install**:
 ```bash
 git clone https://github.com/AChitos/financial_system.git
 cd financial_system
-```
-
-2. Install dependencies:
-```bash
 npm install
 ```
 
-3. Start development servers:
+2. **Start Development Servers**:
 ```bash
+# Start both frontend and backend
 npm run dev
+
+# Or run separately:
+# Backend: cd server && npm run dev
+# Frontend: cd client && npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. **Access the Application**:
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:5000](http://localhost:5000)
 
-### Building for Production
+### Demo Features Available
+- ✅ User Authentication (Login/Register)
+- ✅ Dashboard with financial overview
+- ✅ Transaction management with demo data
+- ✅ Receipt/Invoice OCR processing
+- ✅ Responsive design matching provided mockup
+- ✅ Real-time charts and analytics
+- ✅ Automatic expense categorization
+- ✅ Tax deduction detection
+- ✅ File upload for receipts
+
+### Production Deployment
 
 ```bash
 npm run build
