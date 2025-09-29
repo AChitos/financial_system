@@ -312,7 +312,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="h-64">
-            <Line data={lineChartData} options={chartOptions} />
+            {/* <Line data={lineChartData} options={chartOptions} /> */}
           </div>
         </div>
 
@@ -326,7 +326,7 @@ const Dashboard = () => {
           </div>
           
           <div className="relative w-48 h-48 mx-auto mb-6">
-            <Doughnut data={doughnutChartData} options={doughnutOptions} />
+            {/* <Doughnut data={doughnutChartData} options={doughnutOptions} /> */}
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <span className="text-2xl font-bold text-gray-900">$5,950</span>
               <span className="text-sm text-gray-500">/month</span>

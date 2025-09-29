@@ -2,13 +2,14 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 // Vite injects import.meta.env at build time; provide a typed fallback for TS
-const API_BASE_URL = (import.meta as any)?.env?.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = (import.meta as any)?.env?.VITE_API_URL || 'http://localhost:5001/api';
 
 export const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
+  timeout: 10000, // 10 seconds timeout
 });
 
 // Request interceptor to add auth token
