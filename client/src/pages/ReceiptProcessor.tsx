@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import { Upload, FileText, Scan, Check, Loader } from 'lucide-react';
 import Tesseract from 'tesseract.js';
 import { ExtractedReceiptData } from '@/types';
+import { transactionsApi } from '@/services/api';
 
 const ReceiptProcessor = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -144,14 +145,37 @@ const ReceiptProcessor = () => {
     return businessCategories.includes(category);
   };
 
-  const saveTransaction = () => {
-    // This would integrate with the transactions API
-    console.log('Saving transaction:', extractedData);
-    // Reset the form
-    setUploadedFile(null);
-    setExtractedData(null);
-    setOcrText('');
-    setProgress(0);
+  const saveTransaction = async () => {
+    if (!extractedData) return;
+
+    try {
+      const transactionData = {
+        type: 'expense' as const,
+        amount: extractedData.total || 0,
+        description: extractedData.merchantName || 'Receipt Transaction',
+        category: extractedData.category || 'Other',
+        date: extractedData.date ? new Date(extractedData.date).toISOString() : new Date().toISOString(),
+        paymentMethod: 'card' as const,
+        account: 'Main Account',
+        isRecurring: false,
+        isTaxDeductible: extractedData.isTaxDeductible || false,
+        isBusinessExpense: extractedData.isBusinessExpense || false,
+        notes: `Receipt processed automatically. Items: ${extractedData.items.length}`
+      };
+
+      await transactionsApi.create(transactionData);
+      
+      // Reset the form
+      setUploadedFile(null);
+      setExtractedData(null);
+      setOcrText('');
+      setProgress(0);
+      
+      alert('Transaction saved successfully!');
+    } catch (error) {
+      console.error('Error saving transaction:', error);
+      alert('Failed to save transaction. Please try again.');
+    }
   };
 
   return (

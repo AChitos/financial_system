@@ -22,6 +22,8 @@ const Dashboard = () => {
   const [recentTransactions, setRecentTransactions] = useState<Transaction[]>([]);
   const [selectedPeriod, setSelectedPeriod] = useState('This month');
   const [isLoading, setIsLoading] = useState(true);
+  const [showWidgetManager, setShowWidgetManager] = useState(false);
+  const [showAddWidget, setShowAddWidget] = useState(false);
 
   useEffect(() => {
     fetchDashboardData();
@@ -85,11 +87,17 @@ const Dashboard = () => {
         </div>
         
         <div className="flex items-center space-x-3">
-          <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50">
+          <button 
+            onClick={() => setShowWidgetManager(true)}
+            className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+          >
             <Filter className="w-4 h-4" />
             <span>Manage widgets</span>
           </button>
-          <button className="flex items-center space-x-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
+          <button 
+            onClick={() => setShowAddWidget(true)}
+            className="flex items-center space-x-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+          >
             <span>Add new widget</span>
           </button>
         </div>

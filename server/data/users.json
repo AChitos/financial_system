@@ -8,5 +8,15 @@
     "avatar": "",
     "createdAt": "2025-09-01T00:00:00.000Z",
     "updatedAt": "2025-09-29T00:00:00.000Z"
+  },
+  {
+    "id": "d322e393-236d-4c14-980a-96014e0869d4",
+    "name": "Andreas Chitos",
+    "email": "andreas.chitos@gmail.com",
+    "password": "$2a$10$HweATBc638TQOpXnWy69.uTYf3ro38E7YPx3JAhSqHUv1EXui2F.S",
+    "businessName": "Neurova AI",
+    "avatar": "",
+    "createdAt": "2025-09-29T22:37:59.467Z",
+    "updatedAt": "2025-09-29T22:37:59.467Z"
   }
 ]
