@@ -107,7 +107,7 @@ router.post('/login', async (req, res) => {
       });
     }
 
-    const users = [{ email: 'demo@finset.com', password: '$2a$10$Kd95qBFGR8OnrLateOZE6.1WigSAnFuknTPudMBhU33zCIeQAkQsK', id: 'demo-user', name: 'Demo User' }];
+    const users = [{ email: 'demo@finset.com', password: '$2a$10$RRPWD20JrJFY/cDjYNDFB.vciM124vvqcuY9b1zjfuwoJLOGgkb0C', id: 'demo-user', name: 'Demo User' }];
     // const users = readUsers();
 
     // Check if user exists
@@ -120,13 +120,13 @@ router.post('/login', async (req, res) => {
     }
 
     // Check password
-    // const isPasswordValid = await bcrypt.compare(password, user.password);
-    // if (!isPasswordValid) {
-    //   return res.status(401).json({
-    //     success: false,
-    //     error: 'Invalid credentials'
-    //   });
-    // }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        success: false,
+        error: 'Invalid credentials'
+      });
+    }
 
     // Generate token
     const token = generateToken(user.id);

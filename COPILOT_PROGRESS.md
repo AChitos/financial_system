@@ -102,7 +102,7 @@ Building a comprehensive financial management web application with the following
 
 **Demo Credentials:**
 - Email: demo@finset.com
-- Password: demo
+- Password: password
 
 **Ready for Use**: The application is fully functional and ready for local development or GitHub Pages deployment.
 
