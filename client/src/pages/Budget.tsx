@@ -78,23 +78,23 @@ const Budget = () => {
 
   if (budgets.length === 0) {
     return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Budget</h1>
-          <p className="text-gray-600 mt-1">Plan and track your spending across categories</p>
+      <div className="space-y-6 animate-fade-in">
+        <div className="animate-slide-up">
+          <h1 className="text-3xl font-bold text-gradient">Budget</h1>
+          <p className="text-gray-600 mt-2">Plan and track your spending across categories</p>
         </div>
         
-        <div className="bg-white rounded-xl p-8 shadow-card text-center">
-          <Target className="w-16 h-16 text-purple-600 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Create Your First Budget</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="card-hover text-center animate-slide-up" style={{animationDelay: '0.2s'}}>
+          <Target className="w-20 h-20 text-purple-600 mx-auto mb-6 animate-pulse-soft" />
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4">Create Your First Budget</h2>
+          <p className="text-gray-600 mb-8 max-w-md mx-auto">
             Set up budgets for different categories and track your spending against your goals.
           </p>
           <button 
             onClick={() => setShowCreateModal(true)}
-            className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 inline-flex items-center space-x-2"
+            className="btn-primary text-lg px-8 py-4 inline-flex items-center space-x-3"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="w-6 h-6" />
             <span>Create Your First Budget</span>
           </button>
         </div>
@@ -222,63 +222,75 @@ const Budget = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 animate-fade-in">
+      <div className="flex items-center justify-between animate-slide-up">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Budget</h1>
-          <p className="text-gray-600 mt-1">Plan and track your spending across categories</p>
+          <h1 className="text-3xl font-bold text-gradient">Budget</h1>
+          <p className="text-gray-600 mt-2">Plan and track your spending across categories</p>
         </div>
         <button 
           onClick={() => setShowCreateModal(true)}
-          className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 inline-flex items-center space-x-2"
+          className="btn-primary inline-flex items-center space-x-2"
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-5 h-5" />
           <span>Add Budget</span>
         </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {budgets.map((budget) => (
-          <div key={budget.id} className="bg-white rounded-xl p-6 shadow-card">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <Target className="w-6 h-6 text-purple-600" />
+        {budgets.map((budget, index) => {
+          const category = budget.categories[0] || { spentAmount: 0, allocatedAmount: budget.totalAmount, remainingAmount: budget.totalAmount };
+          const spentPercentage = Math.min((category.spentAmount / category.allocatedAmount) * 100, 100);
+          const isOverBudget = category.spentAmount > category.allocatedAmount;
+          
+          return (
+            <div key={budget.id} className="card-hover animate-slide-up" style={{animationDelay: `${0.1 + index * 0.1}s`}}>
+              <div className="flex items-center justify-between mb-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg flex items-center justify-center shadow-sm">
+                  <Target className="w-6 h-6 text-purple-600" />
+                </div>
+                <span className="text-sm text-gray-500 capitalize bg-gray-100 px-2 py-1 rounded-full">{budget.period}</span>
               </div>
-              <span className="text-sm text-gray-500 capitalize">{budget.period}</span>
+              
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">{budget.name}</h3>
+              <p className="text-sm text-gray-600 mb-4">{category.categoryName || 'General'}</p>
+              
+              <div className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Budget</span>
+                  <span className="font-medium">${budget.totalAmount.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Spent</span>
+                  <span className={`font-medium ${isOverBudget ? 'text-red-600' : 'text-orange-600'}`}>
+                    ${category.spentAmount.toLocaleString()}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-gray-600">Remaining</span>
+                  <span className={`font-medium ${category.remainingAmount < 0 ? 'text-red-600' : 'text-green-600'}`}>
+                    ${Math.max(category.remainingAmount, 0).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="mt-6">
+                <div className="progress-bar">
+                  <div 
+                    className={`progress-fill ${isOverBudget ? 'bg-gradient-to-r from-red-500 to-red-600' : ''}`}
+                    style={{ width: `${spentPercentage}%` }}
+                  ></div>
+                </div>
+                <div className="flex justify-between text-xs text-gray-500 mt-2">
+                  <span>{Math.round(spentPercentage)}% used</span>
+                  <span className={isOverBudget ? 'text-red-500 font-medium' : ''}>
+                    {isOverBudget ? 'Over budget!' : 'On track'}
+                  </span>
+                </div>
+              </div>
             </div>
-            
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">{budget.name}</h3>
-            <p className="text-sm text-gray-600 mb-4">{budget.categories[0]?.categoryName || 'General'}</p>
-            
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Budget</span>
-                <span className="font-medium">${budget.totalAmount.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Spent</span>
-                <span className="font-medium text-red-600">${budget.categories[0]?.spentAmount.toLocaleString() || '0'}</span>
-              </div>
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Remaining</span>
-                <span className="font-medium text-green-600">${budget.categories[0]?.remainingAmount.toLocaleString() || budget.totalAmount.toLocaleString()}</span>
-              </div>
-            </div>
-            
-            <div className="mt-4">
-              <div className="w-full bg-gray-200 rounded-full h-2">
-                <div 
-                  className="bg-green-500 h-2 rounded-full" 
-                  style={{ width: `${budget.categories[0] ? ((budget.categories[0].spentAmount / budget.categories[0].allocatedAmount) * 100) : 0}%` }}
-                ></div>
-              </div>
-              <div className="flex justify-between text-xs text-gray-500 mt-1">
-                <span>{budget.categories[0] ? Math.round((budget.categories[0].spentAmount / budget.categories[0].allocatedAmount) * 100) : 0}%</span>
-                <span>Used</span>
-              </div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
